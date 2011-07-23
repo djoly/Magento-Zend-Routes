@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <DJoly_ZendRoutes>
+            <version>0.0.1</version>
+        </DJoly_ZendRoutes>
+    </modules>
+
+    <global>
+        <models>
+            <zendroutes>
+                <class>DJoly_ZendRoutes_Model</class>
+            </zendroutes>
+        </models>
+        <helpers>
+            <zendroutes>
+                <class>DJoly_ZendRoutes_Helper</class>
+            </zendroutes>
+        </helpers>
+    </global>
+    <frontend>
+	<!-- Example Usage
+        <routes>
+            <route>
+                <module>DJoly_ZendRoutes</module>
+                <name>test</name>
+                <type>standard</type>
+                <secure />
+                <args>
+                    <route>test/:username</route>
+                    <defaults>
+                        <module>zendroutes</module>
+                        <controller>index</controller>
+                        <action>index</action>
+                        <username>David</username>
+                    </defaults>
+                </args>
+            </route>
+        </routes>
+		-->
+    </frontend>
+    <default>
+        <web>
+            <routers>
+                <zendroute>
+                    <area>frontend</area>
+                    <class>DJoly_ZendRoutes_Model_Router</class>
+                </zendroute>
+            </routers>
+        </web>
+    </default>
+</config>

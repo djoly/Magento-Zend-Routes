@@ -1,0 +1,55 @@
+The goal of this module is very simple: provide a
+simple way to use Zend's Route classes with Magento.
+
+Q: Why use Zend Routes?
+A: Zend Routes ship with the Zend Framework, which is
+installed with all Magento stores. 
+
+Magento's standard router is limited to resolving URL 
+paths to <front name>/<controller>/<action>/<param1>/<value1>.
+The only way around this is to use the URL Rewriter which 
+explicitely maps a path, such as /my_product.html to a fugly
+format above. But sometimes this is undesirable, and a dynamic
+approach is prefered.
+
+Q: Great, how do I use it?
+A: In your module's config.xml file, add a configuration similar
+to this:
+
+<frontend>
+    <routes>
+        <route>
+            <module>My_Module</module>
+			
+			<!-- name/identifier of route -->
+            <name>myroute</name>
+			
+			<!-- 'standard' or 'regex' -->
+            <type>standard</type> 
+			
+			<!-- makes the route as secure -->
+            <secure />            
+			
+			<!-- args are passed to the route's constructor -->
+            <args>				  
+				<!-- first argument of route constructor -->
+                <route>user/:username</route> 
+				
+				<!-- second argument (an array) of route constuctor -->
+                <defaults>
+                    <module>mymodule</module>
+                    <controller>index</controller>
+                    <action>index</action>
+                    <username>Djoly</username>
+                </defaults>
+            </args>
+        </route>
+    </routes>
+</frontend>
+	
+This configuration will add a secure standard Zend route, matching the
+path /user with the controller and action My_Module_IndexController::indexAction.
+A single paramater, username, will be passed to the action with a default value of
+'Djoly'. If the username is defined in the URL, it will replace the default value.
+
+For more information on Zend Routes, please consult the Zend Documentation
